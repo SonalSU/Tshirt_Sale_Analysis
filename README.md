@@ -19,7 +19,6 @@ The business lacked a single, reliable view of brand-level performance across fo
 
 Without this visibility, decisions on brand partnerships, discount policy, and inventory/assortment planning risked margin leakage on over-discounted brands and under-investment in high-performing ones.
 
-*(Full details in the [Business Problem Statement](./business_problem_statement.docx).)*
 
 ## 👥 Target Audience
 
@@ -90,9 +89,9 @@ Brand-level records for men's T-shirts, including fields such as:
 
 ## 📁 Project Files
 
-- `Mens_Tshirt_Analysis_Project_Report.docx` — full project report
-- `business_problem_statement.docx` — business problem statement
-- Power BI report (`.pbix`) — dashboard file *(add link/path if included in repo)*
+- `Mens_Tshirt Brand Performance Analysis Project Report.docx` — full project report
+- Business Problem Statement.pdf — business problem statement
+- Men Tshirt Brand Analysis Dashboard (`.pbix`) — dashboard file
 
 ## ✍️ Author
 
