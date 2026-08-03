@@ -1,317 +1,100 @@
-# 👔 Men's T-Shirt Brand Analysis using Azure SQL & Power BI
+# Insight BI — Men's T-Shirt Brand Performance Dashboard
 
-## 📌 Project Overview
+An interactive Power BI dashboard that gives merchandising, category, and finance teams a single, consolidated view of brand-level performance across 200+ men's T-shirt brands.
 
-This project demonstrates an end-to-end Business Intelligence solution built using **Azure SQL Database** and **Microsoft Power BI** to analyze men's t-shirt product data from multiple brands.
+## 📌 Overview
 
-The project transforms raw CSV data into interactive dashboards that help analyze pricing strategies, discounts, profitability, product variety, and brand performance.
+This retail/e-commerce business sources men's T-shirts from 200+ brands (Allen Solly, U.S. Polo Assn., Tommy Hilfiger, GAP, Scotch & Soda, The Bear House, SNITCH, and others). With such a large, fragmented catalog, the merchandising and category teams had no consolidated way to compare brands on discounting, profitability, pricing, and assortment depth — decisions were being made reactively rather than with data.
 
-The solution follows a complete BI pipeline, starting from data ingestion into Azure SQL Database, data cleaning using SQL and Power Query, business metric creation using DAX, and finally designing and publishing interactive Power BI dashboards.
+This project replaces manual, spreadsheet-based brand analysis with a two-page, interactive Power BI report.
 
----
+## 🎯 Business Problem
 
-# 🎯 Business Problem
+The business lacked a single, reliable view of brand-level performance across four dimensions:
 
-A fashion retail company offers men's t-shirts from hundreds of brands through an online marketplace. Although the company collects extensive product information, pricing details, and customer-related data, the information is stored in raw CSV files, making analysis difficult and time-consuming.
+- **Discounting behavior** — which brands are discounted most heavily, risking margin erosion
+- **Profitability** — which brands generate the highest / lowest average profit %
+- **Price positioning** — which brands command the highest average sales price
+- **Assortment depth** — which brands offer the widest product variety
 
-Business users need answers to questions such as:
+Without this visibility, decisions on brand partnerships, discount policy, and inventory/assortment planning risked margin leakage on over-discounted brands and under-investment in high-performing ones.
 
-- Which brands offer the highest discounts?
-- Which brands generate the highest profits?
-- Which brands have the largest product variety?
-- Which premium brands have the highest average selling prices?
-- Which brands are underperforming?
+*(Full details in the [Business Problem Statement](./business_problem_statement.docx).)*
 
-To support better business decisions, an interactive reporting solution is required that consolidates the data, calculates important business metrics, and presents insights through dynamic dashboards.
+## 👥 Target Audience
 
----
+Merchandising managers, category managers, and business analysts responsible for brand strategy and pricing decisions.
 
-# 🎯 Project Objectives
+## ✅ Objectives
 
-- Import raw CSV data into Azure SQL Database.
-- Clean and prepare data using SQL.
-- Connect Azure SQL Database with Power BI.
-- Perform data transformation using Power Query.
-- Create calculated business metrics using DAX.
-- Develop interactive dashboards for brand analysis.
-- Publish reports using Power BI Service.
-- Enable data-driven business decision making.
+- Identify the top 5 brands by average discount % to flag margin risk
+- Identify the top 5 and bottom 5 brands by average profit % to guide partnership decisions
+- Identify the top 5 brands by average sales price to understand premium positioning
+- Identify the top 5 brands by number of product varieties to assess assortment depth
+- Allow slicing/filtering by brand for ad-hoc drill-down
 
----
+## 🛠️ Tools & Technologies
 
-# 🛠️ Tech Stack
+- **Power BI Desktop** — data modeling, DAX measures, report visuals
+- **Data source** — Azure
+- **DAX** — calculated measures (Average Discount %, Average Profit %, Average Sales Price)
 
-- Microsoft Azure SQL Database
-- SQL
-- Microsoft Power BI Desktop
-- Power Query Editor
-- DAX (Data Analysis Expressions)
-- Power BI Service
-- CSV Dataset
+## 🗂️ Data Overview
 
----
+Brand-level records for men's T-shirts, including fields such as:
 
-# 📂 Dataset
-
-**Source:** CSV File
-
-The dataset contains information related to men's t-shirts, including:
-
-- Brand Name
-- Product Name
+- Brand
+- Title
 - Original Price
 - Sale Price
-- Product Rating
-- Product Reviews
-- Product Variety
-- Product Details
 
----
+## 🔍 Approach / Methodology
 
-# 🔄 Project Workflow
+1. **Data import & cleaning** — loaded data into Power BI, handled inconsistent brand naming and duplicates
+2. **DAX measures** — built measures for Average Discount %, Average Profit %, and Average Sales Price
+3. **Visualization** — built a two-page report: a cover page with a brand slicer, and a Brand Performance page with five key visuals
 
-## Step 1 – Data Loading
+## 📊 Dashboard Visuals & Key Insights
 
-- Imported the raw CSV dataset into Azure SQL Database.
-- Created a centralized database for analysis.
+| Visual | Type | Key Finding |
+|---|---|---|
+| Top 5 Brands by Avg Discount % | Bar chart | iVOC (89%), WUXI (85%), Mischief Monkey (85%), Voroxy X AG (85%), Red Tape (83%) lead in discounting — potential margin risk zone |
+| Top 5 Brands by Avg Profit % | Area chart | LP Jeans and MUJI tie for the highest average profit at 17%, followed closely by a cluster of brands at 16% |
+| Top 5 Brands by Highest No. of Varieties | Donut chart | The Indian Garage Co (51 styles, 22.9%) and U.S. Polo Assn. (44 styles, 19.7%) offer the deepest assortment |
+| Top 5 Brands by Highest Avg Sales Price | Ribbon chart | Armani Exchange (~6.1K), Brooks Brothers (~5.1K), Terra Luna (~5.0K) command the highest price points |
+| Bottom 5 Brands by Avg Profit % | Pie chart | Ramadhani Cloth (3.5%), Gespo and Chimpaaanzee (3% each), Be Active X AG and Aapska (2% each) are the least profitable brands |
 
----
+**Overall average discount across all brands:** ~82.9%
+**Overall average sales price:** ~10K
 
-## Step 2 – Data Cleaning in Azure SQL
+## 💡 Business Recommendations
 
-Performed preprocessing before connecting Power BI.
+- Review discount policy for iVOC, WUXI, Mischief Monkey, Voroxy X AG, and Red Tape — heavy discounting at 83–89% may be compressing margins disproportionately
+- Double down on high-margin brands like LP Jeans and MUJI through better shelf placement or marketing spend
+- Reassess partnerships with bottom-profit brands (Ramadhani Cloth, Gespo, Chimpaaanzee, Be Active X AG, Aapska) — renegotiate terms or reduce inventory exposure
+- Leverage premium brands (Armani Exchange, Brooks Brothers) for higher-margin bundling or premium collection campaigns
+- Expand assortment for high-variety, well-performing brands (Indian Garage Co, U.S. Polo Assn.) if sales data supports demand
 
-### Changes Performed
+## ⚠️ Limitations
 
-- Converted **Original Price** from Text to Numeric.
-- Converted **Sale Price** from Text to Numeric.
+- Report built from a static extract; profit %/discount % figures reflect a point-in-time snapshot
+- Sample sizes vary by brand (some "bottom 5" brands may have very few SKUs, e.g. only 2), which can skew average % metrics
+- No time-series/trend view included in this version
 
-This ensured accurate mathematical calculations and improved data quality.
+## 🚀 Future Scope
 
----
+- Add a time trend page (monthly/quarterly profit and discount trends)
+- Add category/sub-category breakdown (beyond just T-shirts)
+- Automate data refresh from a live source (SQL/API) instead of manual load
+- Add a brand scorecard combining all four metrics into a single ranking
 
-## Step 3 – Power BI Connection
+## 📁 Project Files
 
-Connected Azure SQL Database with Power BI Desktop to import the cleaned dataset.
+- `Mens_Tshirt_Analysis_Project_Report.docx` — full project report
+- `business_problem_statement.docx` — business problem statement
+- Power BI report (`.pbix`) — dashboard file *(add link/path if included in repo)*
 
----
+## ✍️ Author
 
-## Step 4 – Data Transformation using Power Query
-
-Performed additional transformations including:
-
-- Verified data types
-- Removed unnecessary columns
-- Checked null values
-- Renamed columns
-- Applied formatting
-- Prepared clean data for visualization
-
----
-
-## Step 5 – DAX Calculations
-
-Created calculated columns using DAX.
-
-### ✅ Cost Price
-
-Calculated the estimated **Cost Price** for every product.
-
-**Purpose**
-
-- Estimate product cost.
-- Support profitability calculations.
-- Enable profit analysis.
-
----
-
-### ✅ Discount Percentage
-
-Calculated the percentage discount offered on every product.
-
-**Purpose**
-
-- Compare pricing strategies.
-- Identify brands offering the highest discounts.
-
----
-
-### ✅ Profit Percentage
-
-Calculated product profit percentage using Cost Price and Sale Price.
-
-**Purpose**
-
-- Measure profitability.
-- Compare brands based on profit margins.
-
----
-
-# 📊 Dashboard Pages
-
-## 🏠 Home Page
-
-The landing page provides an attractive navigation interface with a brand selector and links to the detailed analysis pages.
-
-**Features**
-
-- Professional landing page
-- Brand slicer
-- Navigation buttons
-- Custom background and branding
-
----
-
-## 📈 Brand Performance Dashboard
-
-The Brand Dashboard provides an overview of brand performance using multiple interactive visualizations.
-
-### Top 5 Brands by Average Discount %
-
-**Visual:** Bar Chart
-
-**Purpose**
-
-Displays brands offering the highest average discounts.
-
----
-
-### Top 5 Brands by Highest Average Profit %
-
-**Visual:** Area Chart
-
-**Purpose**
-
-Identifies brands generating the highest average profit percentages.
-
----
-
-### Top 5 Brands by Product Variety
-
-**Visual:** Donut Chart
-
-**Purpose**
-
-Shows brands with the highest number of available products.
-
----
-
-### Top 5 Brands by Average Sales Price
-
-**Visual:** Ribbon Chart
-
-**Purpose**
-
-Compares premium brands based on their average selling prices.
-
----
-
-### Bottom 5 Brands by Average Profit %
-
-**Visual:** Pie Chart
-
-**Purpose**
-
-Highlights brands with the lowest profit margins.
-
----
-
-# 📊 Key Business Insights
-
-The dashboard enables business users to:
-
-- Compare discount strategies across brands.
-- Identify premium brands based on average selling price.
-- Analyze profitability using calculated profit percentages.
-- Understand product variety offered by each brand.
-- Detect underperforming brands for pricing optimization.
-- Support data-driven pricing and inventory decisions.
-
----
-
-# 🚀 Skills Demonstrated
-
-- Azure SQL Database
-- SQL Data Cleaning
-- ETL Process
-- Data Transformation
-- Power Query
-- DAX
-- Data Modeling
-- Power BI Dashboard Development
-- Business Intelligence
-- Data Visualization
-- Dashboard Design
-- Report Publishing
-
----
-
-# 📷 Dashboard Preview
-
-## Home Page
-
-<img width="1775" height="805" alt="image" src="https://github.com/user-attachments/assets/23d51d6e-dd36-4a27-967c-db716d154f53" />
-
-
-## Brand Analysis Dashboard
-
-<img width="1772" height="807" alt="image" src="https://github.com/user-attachments/assets/7225ad2b-45b1-408a-b26f-063032f928e8" />
-
-
-
----
-
-# 📁 Project Structure
-
-```
-Mens-Tshirt-Analysis
-│
-├── Dataset
-│   └── Mens_Tshirt_Data.csv
-│
-├── SQL
-│   └── Data_Cleaning.sql
-│
-├── PowerBI
-│   └── Mens_Tshirt_Analysis.pbix
-│
-├── Images
-│   ├── Home_Page.png
-│   ├── Brand_Dashboard.png
-│
-└── README.md
-```
-
----
-
-# 📚 Learning Outcomes
-
-Through this project, I gained hands-on experience in:
-
-- Azure SQL Database
-- SQL Data Cleaning
-- Power Query Transformations
-- DAX Calculations
-- Power BI Data Modeling
-- Dashboard Development
-- Business Intelligence Reporting
-- Power BI Service Publishing
-
----
-
-# 🔮 Future Enhancements
-
-- Add KPI Cards
-- Dynamic Top N Filtering
-- Drill-through Pages
-- Tooltip Pages
-- Row-Level Security (RLS)
-- Incremental Refresh
-- Executive Dashboard
-- Real-Time Azure SQL Integration
-
----
-
-# ⭐ Conclusion
-
-This project demonstrates a complete Business Intelligence workflow, beginning with importing raw CSV data into Azure SQL Database and performing SQL-based data cleaning. The cleaned data was transformed using Power Query, while DAX calculated columns were developed to derive **Cost Price**, **Discount Percentage**, and **Profit Percentage**. Finally, interactive Power BI dashboards were created to analyze brand performance, pricing strategies, product variety, and profitability. The published solution enables stakeholders to explore business performance through dynamic visualizations and make informed, data-driven decisions.
+**Sonal Undekar**
+QA Engineer / Test Data Engineer
